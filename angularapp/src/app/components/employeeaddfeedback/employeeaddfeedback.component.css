@@ -1,0 +1,104 @@
+/* ===== Feedback Form — Atlas Green Theme ===== */
+.feedback-container {
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 30px;
+    background: var(--pts-surface);
+    border: 1px solid var(--pts-border);
+    border-radius: var(--pts-radius);
+    box-shadow: var(--pts-shadow);
+    animation: fadeUp 0.35s ease;
+}
+
+.feedback-container h2 {
+    text-align: center;
+    color: var(--pts-ink);
+    margin-bottom: 25px;
+    font-weight: 600;
+}
+
+.form-group {
+    margin-bottom: 18px;
+}
+
+.form-group label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 6px;
+    color: var(--pts-ink);
+}
+
+.required {
+    color: var(--pts-danger);
+}
+
+.form-group textarea {
+    width: 100%;
+    padding: 0.6rem 0.8rem;
+    border: 1px solid var(--pts-border);
+    border-radius: var(--pts-radius);
+    font-size: 14px;
+    font-family: inherit;
+    resize: vertical;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--pts-primary);
+    box-shadow: 0 0 0 0.18rem rgba(0, 163, 92, 0.18);
+}
+
+.error {
+    color: var(--pts-danger);
+    font-size: 13px;
+    margin-top: 4px;
+}
+
+.backend-error {
+    text-align: center;
+    margin: 10px 0;
+    color: var(--pts-danger);
+}
+
+/* ===== Submit button (scoped — won't affect the modal's Ok button) ===== */
+.submit-btn {
+    width: 100%;
+    padding: 0.75rem;
+    background: var(--pts-primary);
+    color: #fff;
+    border: none;
+    border-radius: var(--pts-radius);
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: all 0.2s ease;
+}
+
+.submit-btn:not(:disabled):hover {
+    background: var(--pts-primary-dark);
+    transform: translateY(-1px);
+}
+
+.submit-btn:disabled {
+    background: var(--pts-muted);
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+/* ===== Modal layout (scoped) — sizing comes from GLOBAL .modal-box =====
+   Global styles.css supplies: white box, padding 32px 40px, min-width 350px,
+   radius, shadow & popIn. These rules ONLY stack children + size the title. */
+.modal-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+}
+
+.modal-box .pts-modal-title {
+    margin: 0;              /* remove default h3 margin for even spacing */
+    font-size: 1.25rem;     /* reduced message text size */
+    font-weight: 600;
+}

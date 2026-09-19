@@ -1,0 +1,214 @@
+/* You can add global styles to this file, and also import other style files */
+
+/* ===== ProTech Suite — Atlas Green Theme ===== */
+:root {
+  --pts-primary: #00A35C;
+  --pts-primary-dark: #007A44;
+  --pts-primary-soft: rgba(0, 163, 92, 0.14);
+
+  --pts-ink: #1c2b33;
+  --pts-muted: #5c6c75;
+  --pts-border: #d0d7de;
+  --pts-surface: #ffffff;
+  --pts-bg: #f6f8fa;
+
+  --pts-danger: #e5534b;
+  --pts-warning: #e3a008;
+  --pts-info: #3b82f6;
+
+  --pts-radius: 14px;
+  --pts-shadow: 0 1px 3px rgba(27, 43, 51, 0.08), 0 4px 12px rgba(27, 43, 51, 0.05);
+  --pts-shadow-hover: 0 18px 45px rgba(27, 43, 51, 0.16);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  min-height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  color: var(--pts-ink);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Inter", "Poppins", sans-serif;
+  line-height: 1.55;
+
+  background:
+    linear-gradient(
+      120deg,
+      rgba(221, 255, 235, 0.88),
+      rgba(234, 255, 222, 0.84),
+      rgba(214, 255, 239, 0.9)
+    ),
+    url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS0YgOtuEs1Eo7bdZ7YwFSsmNlmA9-aIL2BNeIfuw6VYSl97kPL9VfGWvIe&s=10");
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+/* Headings */
+h1,
+h2,
+h3,
+h4,
+h5 {
+  color: var(--pts-ink);
+  font-weight: 600;
+}
+
+/* ===== Buttons ===== */
+.btn-pts {
+  background: var(--pts-primary);
+  color: #fff;
+  border: none;
+  border-radius: var(--pts-radius);
+  padding: 0.55rem 1.3rem;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.btn-pts:hover {
+  background: var(--pts-primary-dark);
+  color: #fff;
+  transform: translateY(-1px);
+}
+
+.btn-pts-outline {
+  background: transparent;
+  color: var(--pts-ink);
+  border: 1px solid var(--pts-border);
+  border-radius: var(--pts-radius);
+  padding: 0.55rem 1.3rem;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.btn-pts-outline:hover {
+  border-color: var(--pts-primary);
+  color: var(--pts-primary);
+}
+
+/* ===== Cards ===== */
+.pts-card {
+  background: var(--pts-surface);
+  border: 1px solid var(--pts-border);
+  border-radius: var(--pts-radius);
+  box-shadow: var(--pts-shadow);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* ===== Forms ===== */
+.form-control,
+.form-select {
+  border: 1px solid var(--pts-border);
+  border-radius: var(--pts-radius);
+  padding: 0.6rem 0.8rem;
+}
+
+.form-control:focus,
+.form-select:focus {
+  border-color: var(--pts-primary);
+  box-shadow: 0 0 0 0.18rem rgba(0, 163, 92, 0.18);
+}
+
+/* ===== Status badges ===== */
+.badge-pending {
+  background: #fff8e1;
+  color: #8a6d00;
+  border: 1px solid #f0d98a;
+}
+
+.badge-approved {
+  background: #e6f7ee;
+  color: #007A44;
+  border: 1px solid #a5e0c0;
+}
+
+.badge-rejected {
+  background: #fdecea;
+  color: #b42318;
+  border: 1px solid #f3b4ae;
+}
+
+.badge-review {
+  background: #eaf1fd;
+  color: #1d4ed8;
+  border: 1px solid #b7cdf7;
+}
+
+.badge-pill {
+  padding: 0.3rem 0.75rem;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+
+/* Fade-in animation */
+.fade-in {
+  animation: fadeUp 0.35s ease;
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ===== Global Modal Pop up ===== */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1050;
+  animation: fadeIn 0.2s ease;
+}
+
+.modal-box {
+  background: #fff;
+  padding: 32px 40px;
+  border-radius: var(--pts-radius);
+  text-align: center;
+  min-width: 350px;
+  animation: popIn 0.25s ease;
+}
+
+.pts-modal-title {
+  color: var(--pts-ink);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes popIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}

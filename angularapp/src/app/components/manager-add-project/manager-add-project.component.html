@@ -1,0 +1,157 @@
+<div class="container py-5 fade-in">
+  <div class="row justify-content-center">
+    <div class="col-lg-8 col-md-10">
+
+      <div class="pts-card p-4 p-md-5">
+        <h2 class="text-center mb-4 fw-semibold">Create New Project</h2>
+
+        <form #projectForm="ngForm" (ngSubmit)="onSubmit(projectForm)" novalidate>
+
+          <div class="row g-3">
+
+            <!-- Project Title -->
+            <div class="col-12">
+              <label class="form-label fw-medium">
+                Project Title <span class="text-danger">*</span>
+              </label>
+              <input type="text" class="form-control" name="projectTitle" [(ngModel)]="project.projectTitle"
+                #title="ngModel" placeholder="Enter project title" required>
+              <div class="text-danger small mt-1" *ngIf="title.invalid && title.touched">
+                Project title is required
+              </div>
+            </div>
+
+            <!-- Project Description -->
+            <div class="col-12">
+              <label class="form-label fw-medium">
+                Project Description <span class="text-danger">*</span>
+              </label>
+              <textarea class="form-control" name="projectDescription" [(ngModel)]="project.projectDescription"
+                #desc="ngModel" rows="3" placeholder="Describe the project..." required></textarea>
+              <div class="text-danger small mt-1" *ngIf="desc.invalid && desc.touched">
+                Project description is required
+              </div>
+            </div>
+
+            <!-- Start Date -->
+            <div class="col-md-6">
+              <label class="form-label fw-medium">
+                Start Date <span class="text-danger">*</span>
+              </label>
+              <input type="date" class="form-control" name="startDate" [(ngModel)]="project.startDate" #start="ngModel"
+                required>
+              <div class="text-danger small mt-1" *ngIf="start.invalid && start.touched">
+                Start date is required
+              </div>
+            </div>
+
+            <!-- End Date -->
+            <div class="col-md-6">
+              <label class="form-label fw-medium">
+                End Date <span class="text-danger">*</span>
+              </label>
+              <input type="date" class="form-control" name="endDate" [(ngModel)]="project.endDate" #end="ngModel"
+                required>
+              <div class="text-danger small mt-1" *ngIf="end.invalid && end.touched">
+                End date is required
+              </div>
+              <div class="text-danger small mt-1" *ngIf="project.startDate && project.endDate && isEndDateInvalid()">
+                End date must be after the start date.
+              </div>
+            </div>
+
+
+
+            <!-- Frontend Tech Stack -->
+            <div class="col-md-6">
+              <label class="form-label fw-medium">
+                Frontend Tech Stack <span class="text-danger">*</span>
+              </label>
+              <input type="text" class="form-control" name="frontEndTechStack" [(ngModel)]="project.frontEndTechStack"
+                #frontend="ngModel" placeholder="e.g., Angular 15" required>
+              <div class="text-danger small mt-1" *ngIf="frontend.invalid && frontend.touched">
+                Frontend tech stack is required
+              </div>
+            </div>
+
+            <!-- Backend Tech Stack -->
+            <div class="col-md-6">
+              <label class="form-label fw-medium">
+                Backend Tech Stack <span class="text-danger">*</span>
+              </label>
+              <input type="text" class="form-control" name="backendTechStack" [(ngModel)]="project.backendTechStack"
+                #backend="ngModel" placeholder="e.g., .NET Core" required>
+              <div class="text-danger small mt-1" *ngIf="backend.invalid && backend.touched">
+                Backend tech stack is required
+              </div>
+            </div>
+
+            <!-- Database -->
+            <div class="col-md-6">
+              <label class="form-label fw-medium">
+                Database <span class="text-danger">*</span>
+              </label>
+              <input type="text" class="form-control" name="database" [(ngModel)]="project.database" #db="ngModel"
+                placeholder="e.g., MS SQL Server" required>
+              <div class="text-danger small mt-1" *ngIf="db.invalid && db.touched">
+                Database is required
+              </div>
+            </div>
+
+            <!-- Status -->
+            <div class="col-md-6">
+              <label class="form-label fw-medium">
+                Status <span class="text-danger">*</span>
+              </label>
+              <select class="form-select" name="status" [(ngModel)]="project.status" #status="ngModel" required>
+                <option value="Pending">Pending</option>
+                <option value="Ongoing">Ongoing</option>
+                <option value="Completed">Completed</option>
+              </select>
+              <div class="text-danger small mt-1" *ngIf="status.invalid && status.touched">
+                Status is required
+              </div>
+            </div>
+
+          </div>
+          <div *ngIf="validationErrors.length > 0" class="alert alert-danger mt-3">
+
+            <ul class="mb-0">
+              <li *ngFor="let error of validationErrors">
+                {{ error }}
+              </li>
+            </ul>
+
+          </div>
+
+          <!-- Form-level empty error -->
+          <div class="text-danger text-center fw-medium mt-3" *ngIf="formSubmitted && projectForm.invalid">
+            All fields are required
+          </div>
+
+          <!-- Backend error -->
+          <div class="text-danger text-center fw-medium mt-3" *ngIf="errorMessage">
+            {{ errorMessage }}
+          </div>
+
+          <!-- Submit -->
+          <button type="submit" class="submit-btn" [disabled]="projectForm.invalid">
+            Submit
+          </button>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- Success Modal -->
+<div class="modal-overlay" *ngIf="showSuccessModal">
+  <div class="modal-box shadow-lg">
+    <div class="mb-3">
+      <span class="badge-pill badge-approved px-3 py-2">✓ Success</span>
+    </div>
+    <h5 class="pts-modal-title mb-4">Project Added Successfully!</h5>
+    <button class="modal-ok-btn" (click)="closeModal()">Ok</button>
+  </div>
+</div>

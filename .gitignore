@@ -1,0 +1,42 @@
+# ==============================
+# Angular
+# ==============================
+
+angularapp/node_modules/
+angularapp/.angular/
+angularapp/dist/
+angularapp/coverage/
+
+
+# ==============================
+# .NET
+# ==============================
+
+dotnetapp/bin/
+dotnetapp/obj/
+
+
+# ==============================
+# Environment / Secrets
+# ==============================
+
+**/appsettings.Development.json
+**/appsettings.Local.json
+.env
+.env.*
+
+
+# ==============================
+# Visual Studio / VS Code
+# ==============================
+
+.vs/
+.vscode/
+
+
+# ==============================
+# OS files
+# ==============================
+
+.DS_Store
+Thumbs.db

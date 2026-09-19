@@ -1,0 +1,66 @@
+<div class="proposal-container fade-in">
+    <h2>All Project Proposals</h2>
+
+    <!-- No records -->
+    <div class="no-records" *ngIf="dataloaded && proposals.length === 0">
+        Oops! No records Found
+    </div>
+
+    <div class="pts-card p-5 text-center" *ngIf="!dataloaded">
+        <h5 class="text-muted mb-0">Loading...</h5>
+    </div>
+
+    <!-- Table -->
+    <div class="pts-card table-wrap" *ngIf="proposals.length > 0">
+        <table>
+            <thead>
+                <tr>
+                    <th>Proposal ID</th>
+                    <th>User ID</th>
+                    <th>Title</th>
+                    <th>Description</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let p of paginatedProposals">
+                    <td>{{ p.proposalId }}</td>
+                    <td>{{ p.userId }}</td>
+                    <td>{{ p.proposalTitle }}</td>
+                    <td>{{ p.proposalDescription }}</td>
+                    <td>
+                        <span class="status-badge" [ngClass]="p.status?.toLowerCase()">
+                            {{ p.status }}
+                        </span>
+                    </td>
+                    <td class="action-cell">
+                        <!-- Show Approve/Reject only if not yet decided -->
+                        <ng-container *ngIf="p.status === 'Pending'; else statusShown">
+                            <button class="approve-btn" (click)="approveProposal(p)">Approve</button>
+                            <button class="reject-btn" (click)="rejectProposal(p)">Reject</button>
+                        </ng-container>
+                        <ng-template #statusShown>
+                            <span class="done-text">{{ p.status }}</span>
+                        </ng-template>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>
+<div class="pagination-container" *ngIf="proposals.length > itemsPerPage">
+    <button class="page-btn" (click)="prevPage()" [disabled]="currentPage === 1">
+        Previous
+    </button>
+
+    <button *ngFor="let page of pageNumbers" class="page-btn" [class.active]="currentPage === page"
+        (click)="changePage(page)">
+        {{ page }}
+    </button>
+
+    <button class="page-btn" (click)="nextPage()" [disabled]="currentPage === totalPages">
+        Next
+    </button>
+</div>

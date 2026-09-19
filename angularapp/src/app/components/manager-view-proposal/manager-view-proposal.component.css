@@ -1,0 +1,180 @@
+/* ===== Manager View Proposals — Atlas Green Theme ===== */
+.proposal-container {
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 20px;
+}
+
+.proposal-container h2 {
+  text-align: center;
+  color: var(--pts-ink);
+  margin-bottom: 20px;
+  font-weight: 600;
+}
+
+/* ===== No records ===== */
+.no-records {
+  text-align: center;
+  padding: 40px;
+  color: var(--pts-muted);
+  font-size: 1.1rem;
+  background: var(--pts-surface);
+  border: 1px solid var(--pts-border);
+  border-radius: var(--pts-radius);
+  box-shadow: var(--pts-shadow);
+}
+
+/* ===== Table (wrapped in .pts-card) ===== */
+.table-wrap {
+  overflow: hidden;   /* clip table corners to card radius */
+}
+.table-wrap:hover {
+  transform: none;    /* keep table steady (no card lift) */
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--pts-surface);
+}
+
+th, td {
+  padding: 12px 15px;
+  text-align: left;
+  border-bottom: 1px solid var(--pts-border);
+  vertical-align: middle;   /* all cell content vertically centered */
+}
+
+/* th {
+  background: var(--pts-primary);
+  color: #fff;
+  font-weight: 600;
+} */
+
+th {
+  background: #2f5d8b;
+  color: #fff;
+  font-weight: 600;
+}
+
+tbody tr {
+  transition: background 0.2s ease;
+}
+tbody tr:hover {
+  background: var(--pts-bg);
+}
+
+/* ===== Status badges (aligned with global palette) ===== */
+.status-badge {
+  display: inline-block;
+  padding: 0.3rem 0.75rem;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+.status-badge.pending {
+  background: #fff8e1;
+  color: #8a6d00;
+  border: 1px solid #f0d98a;
+}
+
+.status-badge.approved {
+  background: #e6f7ee;
+  color: var(--pts-primary-dark);
+  border: 1px solid #a5e0c0;
+}
+
+.status-badge.rejected {
+  background: #fdecea;
+  color: #b42318;
+  border: 1px solid #f3b4ae;
+}
+
+/* ===== Action cell — keep <td> as a NORMAL table cell (fixes misaligned line) ===== */
+.action-cell {
+  vertical-align: middle;
+}
+
+/* Flex lives on an INNER wrapper, not the <td> itself */
+.action-wrap {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+.approve-btn {
+  padding: 0.4rem 1rem;
+  background: var(--pts-primary);
+  color: #fff;
+  border: none;
+  border-radius: var(--pts-radius);
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+.approve-btn:hover {
+  background: var(--pts-primary-dark);
+  transform: translateY(-1px);
+}
+
+.reject-btn {
+  padding: 0.4rem 1rem;
+  background: var(--pts-danger);
+  color: #fff;
+  border: none;
+  border-radius: var(--pts-radius);
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+.reject-btn:hover {
+  background: #c73f37;
+  transform: translateY(-1px);
+}
+
+/* ===== "Already decided" text ===== */
+.done-text {
+  color: var(--pts-muted);
+  font-style: italic;
+  font-size: 13px;
+}
+.pagination-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  margin-top: 20px;
+  flex-wrap: wrap;
+}
+
+.page-btn {
+  min-width: 40px;
+  padding: 8px 14px;
+  border: 1px solid var(--pts-border);
+  background: #fff;
+  color: var(--pts-ink);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.page-btn:hover:not(:disabled) {
+  background: #2f5d8b;
+  color: #fff;
+  border-color: #2f5d8b;
+}
+
+.page-btn.active {
+  background: #2f5d8b;
+  color: #fff;
+  border-color: #2f5d8b;
+}
+
+.page-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

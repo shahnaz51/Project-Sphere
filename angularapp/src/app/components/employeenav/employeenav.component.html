@@ -1,0 +1,76 @@
+  
+  <div class="modal-overlay" *ngIf="showLogoutModal">
+    <div class="modal">
+      <h3>Are you sure you want to logout?</h3>
+      <div class="modal-actions">
+        <button class="confirm-btn" (click)="logout()">Yes, Logout</button>
+        <button class="cancel-btn" (click)="cancelLogout()">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+   <nav class="navbar navbar-expand-lg pts-navbar sticky-top">
+    <div class="container-fluid px-4">
+      <!-- Brand -->
+      <a class="navbar-brand pts-brand d-flex align-items-center gap-2" routerLink="/home">
+        <span class="pts-logo-dot"></span>
+        PRO-TECH-SUITE
+      </a>
+      <!-- Hamburger -->
+      <button class="navbar-toggler pts-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#employeeNav" aria-controls="employeeNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <!-- Collapsible content -->
+      <div class="collapse navbar-collapse" id="employeeNav">
+        <!-- Left links -->
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4 gap-lg-1 align-items-lg-center">
+          <li class="nav-item">
+            <a class="nav-link pts-link" routerLink="/home" routerLinkActive="active">Home</a>
+          </li>
+          <!-- Proposal Dropdown -->
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle pts-link" id="proposal" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Proposal
+            </a>
+            <ul class="dropdown-menu pts-dropdown">
+              <li><a class="dropdown-item" routerLink="/employee/add-proposal">Add Proposal</a></li>
+              <li><a class="dropdown-item" routerLink="/employee/view-proposal">My Proposal</a></li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link pts-link" routerLink="/employee/view-project" routerLinkActive="active">Projects</a>
+          </li>
+          <!-- Feedback Dropdown -->
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle pts-link" id="feedback" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Feedback
+            </a>
+            <ul class="dropdown-menu pts-dropdown">
+              <li><a class="dropdown-item" routerLink="/employee/add-feedback">Post Feedback</a></li>
+              <li><a class="dropdown-item" routerLink="/employee/view-feedback">My Feedbacks</a></li>
+            </ul>
+          </li>
+        </ul>
+        <!-- Right user info -->
+        <div class="d-flex align-items-center gap-3 mt-3 mt-lg-0 ps-lg-3 pts-user-block">
+          <span class="pts-username">{{ username }}</span>
+          <span class="badge-pill pts-role-badge">{{ userRole }}</span>
+          <button class="btn btn-sm pts-logout px-3" (click)="confirmLogout()">Logout</button>
+        </div>
+      </div>
+    </div>
+  </nav>
+  
+  <!-- <router-outlet></router-outlet> -->
+  
+  <!-- Logout Confirmation Modal -->
+  <div class="modal-overlay" *ngIf="showLogoutModal">
+    <div class="modal-box shadow-lg">
+      <h5 class="pts-modal-title mb-4">Are you sure you want to logout?</h5>
+      <div class="d-flex justify-content-center gap-3">
+        <button class="btn pts-logout px-4" (click)="logout()">Yes, Logout</button>
+        <button class="btn btn-pts-outline px-4" (click)="cancelLogout()">Cancel</button>
+      </div>
+    </div>
+  </div>
+  

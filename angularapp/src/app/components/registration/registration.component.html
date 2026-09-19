@@ -1,0 +1,158 @@
+<div class="container py-5 fade-in">
+  <div class="row justify-content-center">
+    <div class="col-lg-7 col-md-9">
+
+      <div class="pts-card p-4 p-md-5">
+
+        <!-- Brand icon -->
+        <div class="text-center mb-3">
+          <span class="pts-logo-circle">
+            <span class="pts-logo-dot-lg"></span>
+          </span>
+        </div>
+
+        <h2 class="text-center fw-semibold mb-1">Create Account</h2>
+        <p class="text-center text-muted small mb-4">Join ProTech Suite today</p>
+
+        <form #regForm="ngForm" (ngSubmit)="onSubmit()" novalidate>
+
+          <div class="row g-3">
+
+            <!-- Username -->
+            <div class="col-md-6">
+              <label class="form-label fw-medium">
+                Username <span class="text-danger">*</span>
+              </label>
+              <input type="text" class="form-control" name="username" [(ngModel)]="user.Username" #username="ngModel"
+                placeholder="Choose a username" required minlength="3">
+              <div class="text-danger small mt-1" *ngIf="username.invalid && username.touched">
+                <span *ngIf="username.errors?.['required']">Username is required</span>
+                <span *ngIf="username.errors?.['minlength']">Username must be at least 3 characters</span>
+              </div>
+            </div>
+
+            <!-- Email -->
+            <div class="col-md-6">
+              <label class="form-label fw-medium">
+                Email <span class="text-danger">*</span>
+              </label>
+              <input type="email" class="form-control" name="email" [(ngModel)]="user.Email" #email="ngModel"
+                placeholder="you@example.com" pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" required>
+              <div class="text-danger small mt-1" *ngIf="email.invalid && email.touched"><br>
+                <span *ngIf="email.errors?.['required']">Email is required</span>
+                <span *ngIf="email.errors?.['pattern']">
+                  Please enter a valid email address
+                </span>
+
+              </div>
+            </div>
+
+            <!-- Mobile Number -->
+            <div class="col-md-6">
+              <label class="form-label fw-medium">
+                Mobile Number <span class="text-danger">*</span>
+              </label>
+              <input type="text" class="form-control" name="mobileNumber" [(ngModel)]="user.MobileNumber"
+                #mobile="ngModel" placeholder="10-digit number" required pattern="^[6-9][0-9]{9}$">
+              <div class="text-danger small mt-1" *ngIf="mobile.invalid && mobile.touched">
+                <span *ngIf="mobile.errors?.['required']">Mobile number is required</span>
+                <span *ngIf="mobile.errors?.['pattern']">
+                  Enter a valid 10-digit mobile number starting with 6, 7, 8, or 9
+                </span>
+                <!-- <span *ngIf="mobile.errors?.['pattern']">Enter a valid 10-digit mobile number</span> -->
+              </div>
+            </div>
+
+            <!-- User Role -->
+            <div class="col-md-6">
+              <label class="form-label fw-medium">
+                User Role <span class="text-danger">*</span>
+              </label>
+              <select class="form-select" name="userRole" [(ngModel)]="user.UserRole" #role="ngModel" required>
+                <option value="">-- Select Role --</option>
+                <option value="Manager">Manager</option>
+                <option value="Employee">Employee</option>
+              </select>
+              <div class="text-danger small mt-1" *ngIf="role.invalid && role.touched">
+                Role is required
+              </div>
+            </div>
+            <!-- Manager Registration Key -->
+            <div class="col-md-6" *ngIf="user.UserRole === 'Manager'">
+
+              <label class="form-label fw-medium">
+                Manager Registration Key
+                <span class="text-danger">*</span>
+              </label>
+
+              <input type="password" class="form-control" name="managerKey" [(ngModel)]="managerKey"
+                #managerKeyModel="ngModel" placeholder="Enter Manager Key" required>
+              <div class="text-danger small mt-1" *ngIf="managerKeyModel.invalid && managerKeyModel.touched">
+                Manager key is required
+              </div>
+
+            </div>
+
+            <!-- Password -->
+            <div class="col-md-6">
+              <label class="form-label fw-medium">
+                Password <span class="text-danger">*</span>
+              </label>
+              <input type="password" class="form-control" name="password" [(ngModel)]="user.Password"
+                #password="ngModel" placeholder="At least 8 characters" required
+                pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$" minlength="8">
+              <div class="text-danger small mt-1" *ngIf="password.invalid && password.touched">
+                <span *ngIf="password.errors?.['required']">Password is required</span><br>
+                <span *ngIf="password.errors?.['minlength']">Password must be at least 8 characters</span><br>
+                <span *ngIf="password.errors?.['pattern']">
+                  Password must contain at least one uppercase letter, one lowercase letter,
+                  one number and one special character.
+                </span>
+
+              </div>
+            </div>
+
+            <!-- Confirm Password -->
+            <div class="col-md-6">
+              <label class="form-label fw-medium">
+                Confirm Password <span class="text-danger">*</span>
+              </label>
+              <input type="password" class="form-control" name="confirmPassword" [(ngModel)]="confirmPassword"
+                #confirmPwd="ngModel" placeholder="Re-enter password" required>
+              <div class="text-danger small mt-1" *ngIf="confirmPwd.touched && confirmPassword !== user.Password">
+                Passwords do not match
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Backend error -->
+          <!-- <div class="text-danger text-center small mt-3" *ngIf="errorMessage">
+              {{ errorMessage }}
+            </div> -->
+          <div *ngIf="validationErrors.length > 0" class="alert alert-danger mt-3">
+
+            <ul class="mb-0">
+              <li *ngFor="let error of validationErrors">
+                {{ error }}
+              </li>
+            </ul>
+
+          </div>
+
+          <!-- Submit -->
+          <button type="submit" class="btn btn-pts w-100 mt-4"
+            [disabled]="regForm.invalid || confirmPassword !== user.Password ||  (user.UserRole === 'Manager' && !managerKey)">
+            Register
+          </button>
+
+          <p class="text-center text-muted small mt-4 mb-0">
+            Already have an account?
+            <a routerLink="/login" class="pts-link-inline">Login here</a>
+          </p>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</div>

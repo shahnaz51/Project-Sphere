@@ -1,0 +1,82 @@
+<div class="project-list-container fade-in">
+    <h2>Projects</h2>
+
+    <div class="search-bar">
+        <input type="text" class="form-control" [(ngModel)]="searchTerm" (input)="onSearch()"
+            placeholder="Search by project title..." name="searchTerm">
+    </div>
+
+    <div class="pts-card p-5 text-center" *ngIf="!dataloaded">
+        <h5 class="text-muted mb-0">Loading...</h5>
+    </div>
+
+    <div class="pts-card table-wrap" *ngIf="filteredProjects.length > 0">
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Title</th>
+                    <th>Description</th>
+                    <th>Start</th>
+                    <th>End</th>
+                    <th>Frontend</th>
+                    <th>Backend</th>
+                    <th>Database</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let p of paginatedProjects">
+                    <td>{{ p.projectId }}</td>
+                    <td>{{ p.projectTitle }}</td>
+                    <td>{{ p.projectDescription }}</td>
+                    <td>{{ p.startDate | date: 'mediumDate' }}</td>
+                    <td>{{ p.endDate | date: 'mediumDate' }}</td>
+                    <td>{{ p.frontEndTechStack }}</td>
+                    <td>{{ p.backendTechStack }}</td>
+                    <td>{{ p.database }}</td>
+                    <td>
+                        <span class="status-badge" [ngClass]="p.status?.toLowerCase()">
+                            {{ p.status }}
+                        </span>
+                    </td>
+                    <td class="action-cell">
+                        <button class="edit-btn" (click)="editProject(p.projectId!)">Edit</button>
+                        <button class="delete-btn" (click)="confirmDelete(p.projectId!)">Delete</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="pagination-container" *ngIf="filteredProjects.length > itemsPerPage">
+        <button class="page-btn" (click)="prevPage()" [disabled]="currentPage === 1">
+            Previous
+        </button>
+
+        <button *ngFor="let page of pageNumbers" class="page-btn" [class.active]="currentPage === page"
+            (click)="changePage(page)">
+            {{ page }}
+        </button>
+
+        <button class="page-btn" (click)="nextPage()" [disabled]="currentPage === totalPages">
+            Next
+        </button>
+    </div>
+
+
+    <div class="no-records" *ngIf="dataloaded && filteredProjects.length === 0">
+        Oops! No records Found
+    </div>
+</div>
+
+
+<div class="modal-overlay" *ngIf="showDeleteModal">
+    <div class="modal-box">
+        <h3 class="pts-modal-title">Are you sure you want to delete this project?</h3>
+        <div class="modal-actions">
+            <button class="btn-pts danger-btn" (click)="deleteProject()">Yes, Delete</button>
+            <button class="btn-pts-outline" (click)="cancelDelete()">Cancel</button>
+        </div>
+    </div>
+</div>

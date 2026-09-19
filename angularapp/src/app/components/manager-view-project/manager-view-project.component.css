@@ -1,0 +1,213 @@
+/* ===== Manager View Projects — Atlas Green Theme ===== */
+.project-list-container {
+    max-width: 1300px;
+    margin: 40px auto;
+    padding: 20px;
+}
+
+.project-list-container h2 {
+    text-align: center;
+    color: var(--pts-ink);
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+/* ===== Search bar (aligned right) ===== */
+.search-bar {
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: flex-end;   /* push the input to the right */
+}
+
+.search-bar input {
+    width: 350px;
+    max-width: 100%;
+    border-radius: 999px;
+    font-size: 14px;
+}
+
+
+
+/* ===== No records ===== */
+.no-records {
+    text-align: center;
+    padding: 40px;
+    color: var(--pts-muted);
+    font-size: 1.1rem;
+    background: var(--pts-surface);
+    border: 1px solid var(--pts-border);
+    border-radius: var(--pts-radius);
+    box-shadow: var(--pts-shadow);
+}
+
+/* ===== Table (wrapped in .pts-card) ===== */
+.table-wrap {
+    overflow: hidden;
+}
+.table-wrap:hover {
+    transform: none;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--pts-surface);
+    font-size: 13px;
+}
+
+th,
+td {
+    padding: 10px 12px;
+    text-align: left;
+    border-bottom: 1px solid var(--pts-border);
+    vertical-align: middle;
+}
+
+th {
+    background: #2f5d8b;
+    color: #fff;
+    font-weight: 600;
+}
+
+tbody tr {
+    transition: background 0.2s ease;
+}
+tbody tr:hover {
+    background: var(--pts-bg);
+}
+
+/* ===== Status badges (aligned with global palette) ===== */
+.status-badge {
+    display: inline-block;
+    padding: 0.3rem 0.75rem;
+    border-radius: 999px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    text-transform: capitalize;
+}
+
+.status-badge.pending {
+    background: #fff8e1;
+    color: #8a6d00;
+    border: 1px solid #f0d98a;
+}
+
+.status-badge.ongoing {
+    background: #eaf1fd;
+    color: #1d4ed8;
+    border: 1px solid #b7cdf7;
+}
+
+.status-badge.completed {
+    background: #e6f7ee;
+    color: var(--pts-primary-dark);
+    border: 1px solid #a5e0c0;
+}
+
+.status-badge.cancelled {
+    background: #fdecea;
+    color: #b42318;
+    border: 1px solid #f3b4ae;
+}
+
+/* ===== Action buttons ===== */
+.action-cell {
+    vertical-align: middle;
+}
+.action-wrap {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+/* ===== Edit button (green) ===== */
+.edit-btn {
+    padding: 0.35rem 0.9rem;
+    margin-right: 12px;              /* spacing between Edit & Delete */
+    background: rgb(7, 146, 7);  /* brand green */
+    color: #fff;
+    border: none;
+    border-radius: var(--pts-radius);
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: 600;
+    transition: all 0.2s ease;
+}
+.edit-btn:hover {
+    background: rgb(29, 189, 29);
+    transform: translateY(-1px);
+}
+
+/* ===== Delete button (bright tomato red) ===== */
+.delete-btn {
+    padding: 0.35rem 0.9rem;
+    background: #e12504;             /* tomato red */
+    color: #fff;
+    border: none;
+    border-radius: var(--pts-radius);
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: 600;
+    transition: all 0.2s ease;
+}
+.delete-btn:hover {
+    background: #fa2908;             /* darker tomato on hover */
+    transform: translateY(-1px);
+}
+
+/* ===== Modal — sizing/box comes from GLOBAL .modal-box ===== */
+.modal-box .pts-modal-title {
+    margin: 0;
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+
+.modal-actions {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+/* Red "Yes, Delete" (btn-pts recolored to danger for this destructive action) */
+.danger-btn {
+    background: #ff6347;
+}
+.danger-btn:hover {
+    background: #e5533d;
+}
+.pagination-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    margin-top: 20px;
+    flex-wrap: wrap;
+}
+
+.page-btn {
+    min-width: 40px;
+    padding: 8px 14px;
+    border: 1px solid var(--pts-border);
+    background: #fff;
+    color: var(--pts-ink);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.page-btn:hover:not(:disabled) {
+    background: #2f5d8b;
+    color: #fff;
+}
+
+.page-btn.active {
+    background: #2f5d8b;
+    color: #fff;
+    border-color: #2f5d8b;
+}
+
+.page-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}

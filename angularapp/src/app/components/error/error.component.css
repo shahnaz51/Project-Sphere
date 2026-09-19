@@ -1,0 +1,104 @@
+/* .error-container {
+    text-align: center;
+    padding: 80px 20px;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  
+  .error-container h1 {
+    font-size: 4rem;
+    color: #e74c3c;
+    margin-bottom: 10px;
+  }
+  
+  .error-container h2 {
+    font-size: 1.8rem;
+    color: #2c3e50;
+    margin-bottom: 20px;
+  }
+  
+  .error-container p {
+    color: #666;
+    font-size: 1rem;
+    margin-bottom: 30px;
+  }
+  
+  .back-btn {
+    display: inline-block;
+    padding: 12px 28px;
+    background: #2c3e50;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: background 0.2s;
+  }
+  
+  .back-btn:hover {
+    background: #34495e;
+  }
+   */
+
+
+
+   /* Full-height centered wrapper */
+.error-wrapper {
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+}
+
+/* Card */
+.error-card {
+  text-align: center;
+  padding: 50px 45px;
+  max-width: 520px;
+  width: 100%;
+}
+
+/* Big 404 badge with green tint */
+.error-badge {
+  display: inline-block;
+  font-size: 3rem;
+  font-weight: 800;
+  letter-spacing: 2px;
+  color: var(--pts-primary);
+  background: rgba(0, 163, 92, 0.1);
+  border: 1px solid rgba(0, 163, 92, 0.25);
+  padding: 0.4rem 1.4rem;
+  border-radius: 999px;
+  margin-bottom: 20px;
+}
+
+/* Title */
+.error-title {
+  font-size: 2.6rem;
+  color: var(--pts-ink);
+  font-weight: 800;
+  margin: 0 0 6px;
+}
+
+/* Subtitle */
+.error-subtitle {
+  font-size: 1.3rem;
+  color: var(--pts-danger);
+  font-weight: 600;
+  margin: 0 0 16px;
+}
+
+/* Text */
+.error-text {
+  color: var(--pts-muted);
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-bottom: 30px;
+}
+
+/* Buttons row */
+.error-actions {
+  display: flex;
+  gap: 14px;
+  justify-content: center;
+  flex-wrap: wrap;
+}

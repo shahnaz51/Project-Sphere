@@ -1,0 +1,70 @@
+<div class="proposal-list-container fade-in">
+    <h2>View Proposals</h2>
+
+    <div class="pts-card p-5 text-center" *ngIf="!dataloaded">
+        <h5 class="text-muted mb-0">Loading...</h5>
+    </div>
+
+    <div class="no-records" *ngIf="dataloaded && proposals.length === 0">
+        Oops! No records Found
+    </div>
+
+    <div class="pts-card p-0 overflow-hidden" *ngIf="proposals.length > 0">
+        <div class="table-responsive">
+            <table class="table table-hover align-middle mb-0">
+                <thead>
+                    <tr>
+                        <th>Proposal ID</th>
+                        <th>Title</th>
+                        <th>Description</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr *ngFor="let p of paginatedProposals">
+                        <td>{{ p.proposalId }}</td>
+                        <td>{{ p.proposalTitle }}</td>
+                        <td>{{ p.proposalDescription }}</td>
+                        <td>
+                            <span class="status-badge" [ngClass]="p.status?.toLowerCase()">
+                                {{ p.status }}
+                            </span>
+                        </td>
+                        <td>
+                            <button class="delete-btn" (click)="confirmDelete(p.proposalId!)">
+                                Delete
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="pagination-container" *ngIf="proposals.length > itemsPerPage">
+        <button class="page-btn" (click)="prevPage()" [disabled]="currentPage === 1">
+            Previous
+        </button>
+
+        <button *ngFor="let page of pageNumbers" class="page-btn" [class.active]="currentPage === page"
+            (click)="changePage(page)">
+            {{ page }}
+        </button>
+
+        <button class="page-btn" (click)="nextPage()" [disabled]="currentPage === totalPages">
+            Next
+        </button>
+    </div>
+
+    <!-- Delete Confirmation Modal -->
+    <div class="modal-overlay" *ngIf="showDeleteModal">
+        <div class="modal_abc">
+            <h3>Are you sure you want to delete this proposal?</h3>
+            <div class="modal-actions">
+                <button class="confirm-btn" (click)="deleteProposal()">Yes, Delete</button>
+                <button class="cancel-btn" (click)="cancelDelete()">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>

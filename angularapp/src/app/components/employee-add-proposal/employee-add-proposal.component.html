@@ -1,0 +1,66 @@
+<div class="container py-5 fade-in">
+  <div class="row justify-content-center">
+    <div class="col-lg-7 col-md-9">
+
+      <div class="pts-card p-4 p-md-5">
+        <h2 class="text-center mb-4 fw-semibold">Add Proposal</h2>
+
+        <form #proposalForm="ngForm" (ngSubmit)="onSubmit()" novalidate>
+
+          <!-- Proposal Title -->
+          <div class="mb-3">
+            <label class="form-label fw-medium">Proposal Title</label>
+            <input type="text" class="form-control" [class.is-invalid]="title.invalid && title.touched"
+              name="proposalTitle" [(ngModel)]="proposal.proposalTitle" #title="ngModel"
+              placeholder="Enter proposal title" required>
+            <div class="invalid-feedback" *ngIf="title.invalid && title.touched">
+              Proposal title is required
+            </div>
+          </div>
+
+          <!-- Proposal Description -->
+          <div class="mb-3">
+            <label class="form-label fw-medium">Proposal Description</label>
+            <textarea class="form-control" [class.is-invalid]="desc.invalid && desc.touched" name="proposalDescription"
+              [(ngModel)]="proposal.proposalDescription" #desc="ngModel" rows="5"
+              placeholder="Describe your proposal in detail..." required></textarea>
+            <div class="invalid-feedback" *ngIf="desc.invalid && desc.touched">
+              Proposal description is required
+            </div>
+          </div>
+
+          <!-- Backend error -->
+          <div *ngIf="validationErrors.length > 0" class="alert alert-danger mt-3">
+
+            <ul class="mb-0">
+              <li *ngFor="let error of validationErrors">
+                {{ error }}
+              </li>
+            </ul>
+
+          </div>
+          <div class="text-danger text-center small my-3" *ngIf="errorMessage">
+            {{ errorMessage }}
+          </div>
+
+          <!-- Submit -->
+          <button type="submit" class="submit-btn" [disabled]="proposalForm.invalid">
+            Submit Proposal
+          </button>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- Success Modal -->
+<div class="modal-overlay" *ngIf="showSuccessModal">
+  <div class="modal-box shadow-lg">
+    <div class="mb-3">
+      <span class="badge-pill badge-approved px-3 py-2">✓ Success</span>
+    </div>
+    <h5 class="pts-modal-title mb-4">Proposal Added Successfully!</h5>
+    <button class="modal-ok-btn" (click)="closeModal()">Ok</button>
+  </div>
+</div>

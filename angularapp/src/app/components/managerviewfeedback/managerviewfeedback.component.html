@@ -1,0 +1,67 @@
+<div class="feedback-container fade-in">
+    <h2>Feedback Details</h2>
+
+    <!-- No records -->
+    <div class="no-records" *ngIf="dataloaded && feedbacks.length === 0">
+        Oops! No records Found
+    </div>
+
+    <div class="pts-card p-5 text-center" *ngIf="!dataloaded">
+        <h5 class="text-muted mb-0">Loading...</h5>
+    </div>
+
+    <!-- Table -->
+    <div class="pts-card table-wrap" *ngIf="feedbacks.length > 0">
+        <table>
+            <thead>
+                <tr>
+                    <th>Feedback ID</th>
+                    <th>User ID</th>
+                    <th>Feedback</th>
+                    <th>Date</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let f of paginatedFeedbacks">
+                    <td>{{ f.feedbackId }}</td>
+                    <td>{{ f.userId }}</td>
+                    <td>{{ f.feedbackText }}</td>
+                    <td>{{ f.date | date: 'medium' }}</td>
+                    <td>
+                        <button class="profile-btn" (click)="showProfile(f)">
+                            Show Profile
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="pagination-container" *ngIf="feedbacks.length > itemsPerPage">
+    <button class="page-btn" (click)="prevPage()" [disabled]="currentPage === 1">
+        Previous
+    </button>
+
+    <button *ngFor="let page of pageNumbers" class="page-btn" [class.active]="currentPage === page"
+        (click)="changePage(page)">
+        {{ page }}
+    </button>
+
+    <button class="page-btn" (click)="nextPage()" [disabled]="currentPage === totalPages">
+        Next
+    </button>
+</div>
+
+<div class="modal-overlay" *ngIf="showProfileModal">
+    <div class="modal-box">
+        <h3 class="pts-modal-title">User Profile</h3>
+        <div class="profile-details">
+            <p><strong>Username:</strong> {{ selectedUser?.username }}</p>
+            <p><strong>Email:</strong> {{ selectedUser?.email }}</p>
+            <p><strong>Mobile:</strong> {{ selectedUser?.mobileNumber }}</p>
+            <p><strong>Role:</strong> {{ selectedUser?.userRole }}</p>
+        </div>
+        <button class="btn-pts" (click)="closeProfile()">Close</button>
+    </div>
+</div>

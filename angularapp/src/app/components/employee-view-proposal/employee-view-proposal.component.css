@@ -1,0 +1,229 @@
+/* ===== Proposal List — Atlas Green Theme ===== */
+.proposal-list-container {
+    max-width: 1100px;
+    margin: 40px auto;
+    padding: 20px;
+    animation: fadeUp 0.35s ease;   /* matches global .fade-in */
+}
+
+.proposal-list-container h2 {
+    color: var(--pts-ink);
+    margin-bottom: 20px;
+    text-align: center;
+    font-weight: 600;
+}
+
+.no-records {
+    text-align: center;
+    padding: 40px;
+    color: var(--pts-muted);
+    font-size: 1.1rem;
+    background: var(--pts-surface);
+    border: 1px solid var(--pts-border);
+    border-radius: var(--pts-radius);
+    box-shadow: var(--pts-shadow);
+}
+
+/* ===== Table ===== */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--pts-surface);
+    border: 1px solid var(--pts-border);
+    box-shadow: var(--pts-shadow);
+    border-radius: var(--pts-radius);
+    overflow: hidden;
+}
+
+th,
+td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid var(--pts-border);
+}
+
+th {
+    /* background: var(--pts-primary); */
+    background: #2f5d8b;
+    color: #fff;
+    font-weight: 600;
+}
+
+tbody tr {
+    transition: background 0.2s ease;
+}
+
+tbody tr:hover {
+    background: var(--pts-bg);
+}
+
+/* ===== Status badges (aligned with global .badge-pill palette) ===== */
+.status-badge {
+    display: inline-block;
+    padding: 0.3rem 0.75rem;
+    border-radius: 999px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    text-transform: capitalize;
+}
+
+.status-badge.pending {
+    background: #fff8e1;
+    color: #8a6d00;
+    border: 1px solid #f0d98a;
+}
+
+.status-badge.approved {
+    background: #e6f7ee;
+    color: var(--pts-primary-dark);
+    border: 1px solid #a5e0c0;
+}
+
+.status-badge.rejected {
+    background: #fdecea;
+    color: #b42318;
+    border: 1px solid #f3b4ae;
+}
+
+/* Optional: matches the global .badge-review state */
+.status-badge.review {
+    background: #eaf1fd;
+    color: #1d4ed8;
+    border: 1px solid #b7cdf7;
+}
+
+
+
+/* ===== Delete button (danger) ===== */
+.delete-btn {
+    padding: 0.5rem 1rem;
+    background: var(--pts-danger);
+    color: #fff;
+    border: none;
+    border-radius: var(--pts-radius);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.delete-btn:hover {
+    background: #c73f37;
+    transform: translateY(-1px);
+}
+
+/* ===== Modal (matches navbar modal: fadeIn + popIn) ===== */
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(27, 43, 51, 0.5);   /* --pts-ink tint */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1050;
+    animation: fadeIn 0.2s ease;
+}
+
+.modal_abc {
+    background: var(--pts-surface);
+    padding: 32px 40px;
+    border: 1px solid var(--pts-border);
+    border-radius: var(--pts-radius);
+    box-shadow: var(--pts-shadow-hover);
+    text-align: center;
+    min-width: 350px;
+    animation: popIn 0.25s ease;
+}
+
+.modal_abc h3 {
+    color: var(--pts-ink);
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+.modal-actions {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+}
+
+/* Confirm = danger (destructive action) */
+.confirm-btn {
+    padding: 0.55rem 1.3rem;
+    background: var(--pts-danger);
+    color: #fff;
+    border: none;
+    border-radius: var(--pts-radius);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.confirm-btn:hover {
+    background: #c73f37;
+    transform: translateY(-1px);
+}
+
+/* Cancel = outline (matches .btn-pts-outline) */
+.cancel-btn {
+    padding: 0.55rem 1.3rem;
+    background: transparent;
+    color: var(--pts-ink);
+    border: 1px solid var(--pts-border);
+    border-radius: var(--pts-radius);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.cancel-btn:hover {
+    border-color: var(--pts-primary);
+    color: var(--pts-primary);
+}
+.pagination-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    margin-top: 20px;
+}
+
+.page-btn {
+    min-width: 40px;
+    padding: 8px 14px;
+    border: 1px solid var(--pts-border);
+    background: white;
+    color: var(--pts-ink);
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.page-btn:hover:not(:disabled) {
+    background: #2f5d8b;
+    color: white;
+}
+
+.page-btn.active {
+    background: #2f5d8b;
+    color: white;
+    border-color: #2f5d8b;
+}
+
+.page-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* ===== Animations (shared with navbar modal) ===== */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+@keyframes popIn {
+    from { opacity: 0; transform: scale(0.9); }
+    to   { opacity: 1; transform: scale(1); }
+}
+@keyframes fadeUp {
+    from { opacity: 0; transform: translateY(8px); }
+    to   { opacity: 1; transform: translateY(0); }
+}

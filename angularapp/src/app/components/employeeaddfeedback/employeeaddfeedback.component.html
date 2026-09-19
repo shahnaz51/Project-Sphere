@@ -1,0 +1,46 @@
+<div class="feedback-container fade-in">
+    <h2>Add Feedback</h2>
+
+    <form #feedbackForm="ngForm" (ngSubmit)="onSubmit()" novalidate>
+
+        <div class="form-group">
+            <label>Feedback <span class="required">*</span></label>
+            <textarea
+                name="feedbackText"
+                [(ngModel)]="feedback.feedbackText"
+                #fbText="ngModel"
+                rows="6"
+                required
+                placeholder="Write your feedback here..."></textarea>
+            <div class="error" *ngIf="fbText.invalid && fbText.touched">
+                Feedback is required
+            </div>
+        </div>
+        <div *ngIf="validationErrors.length > 0" class="alert alert-danger mt-3">
+
+            <ul class="mb-0">
+              <li *ngFor="let error of validationErrors">
+                {{ error }}
+              </li>
+            </ul>
+
+          </div>
+
+        <div class="error backend-error" *ngIf="errorMessage">
+            {{ errorMessage }}
+        </div>
+
+        <button type="submit" class="submit-btn" [disabled]="feedbackForm.invalid">
+            Submit
+        </button>
+    </form>
+</div>
+
+<!-- ✅ Success Modal — styled like the reference (badge → title → Ok) -->
+<div class="modal-overlay" *ngIf="showSuccessModal">
+    <div class="modal-box">
+        <span class="badge-pill badge-approved">✓ Success</span>
+        <h3 class="pts-modal-title">Feedback Added Successfully!</h3>
+        <button class="btn-pts" (click)="closeModal()">Ok</button>
+    </div>
+</div>

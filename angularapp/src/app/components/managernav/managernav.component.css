@@ -1,0 +1,201 @@
+/* Charcoal navbar (matches guest navbar) */
+.pts-navbar {
+  background: var(--pts-ink);
+  border-bottom: 1px solid #2a3b45;
+  padding: 0.6rem 0;
+}
+
+/* Fix: replace Bootstrap's caret with the green underline on the dropdown */
+.pts-link.dropdown-toggle::after {
+  border: none;              /* remove the white caret triangle */
+  content: "";
+  position: absolute;
+  left: 0.6rem;
+  right: 0.6rem;
+  bottom: 2px;
+  height: 2px;
+  width: auto;
+  margin: 0;
+  vertical-align: baseline;
+  background: var(--pts-primary);   /* green like other links */
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.25s ease;
+}
+
+.pts-link.dropdown-toggle:hover::after,
+.pts-link.dropdown-toggle.active::after {
+  transform: scaleX(1);
+}
+
+/* Brand */
+.pts-brand {
+  color: #ffffff !important;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  font-size: 1.25rem;
+}
+
+/* Green logo dot */
+.pts-logo-dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--pts-primary);
+  display: inline-block;
+  box-shadow: 0 0 0 4px rgba(0, 163, 92, 0.25);
+}
+
+/* Nav links */
+.pts-link {
+  color: #cbd5db !important;
+  font-weight: 500;
+  position: relative;
+  padding: 0.4rem 0.6rem !important;
+  transition: color 0.2s ease;
+}
+.pts-link:hover { color: #ffffff !important; }
+.pts-link.active { color: #ffffff !important; }
+
+/* Animated green underline */
+.pts-link::after {
+  content: "";
+  position: absolute;
+  left: 0.6rem; right: 0.6rem;
+  bottom: 2px;
+  height: 2px;
+  background: var(--pts-primary);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.25s ease;
+}
+.pts-link:hover::after,
+.pts-link.active::after { transform: scaleX(1); }
+
+/* Hamburger */
+.pts-toggler { border: 1px solid #3a4b55; }
+.pts-toggler:focus { box-shadow: none; }
+.pts-toggler .navbar-toggler-icon {
+  filter: invert(1) grayscale(1) brightness(2);
+}
+
+/* Dropdown (soft animation) */
+.pts-dropdown {
+  border: 1px solid var(--pts-border);
+  border-radius: var(--pts-radius);
+  box-shadow: var(--pts-shadow);
+  animation: fadeSlide 0.22s ease;
+  margin-top: 0.4rem;
+}
+@keyframes fadeSlide {
+  from { opacity: 0; transform: translateY(-8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.pts-dropdown .dropdown-item {
+  color: var(--pts-ink);
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+}
+.pts-dropdown .dropdown-item:hover {
+  background: #f0f7f3;
+  color: var(--pts-primary-dark);
+}
+
+/* User info */
+.pts-username {
+  color: #ffffff;
+  font-weight: 500;
+}
+
+/* Role badge (green to match theme) */
+.pts-role-badge {
+  background: rgba(0, 163, 92, 0.18);
+  color: #4be0a0;
+  border: 1px solid rgba(0, 163, 92, 0.4);
+}
+
+/* Logout button (danger) */
+.pts-logout {
+  background: var(--pts-danger);
+  color: #fff;
+  border: none;
+  border-radius: var(--pts-radius);
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+.pts-logout:hover {
+  background: #c0392b;
+  color: #fff;
+  transform: translateY(-1px);
+}
+
+/* ===== Modal ===== */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1050;
+  animation: fadeIn 0.2s ease;
+}
+.modal-box {
+  background: #fff;
+  padding: 32px 40px;
+  border-radius: var(--pts-radius);
+  text-align: center;
+  min-width: 350px;
+  animation: popIn 0.25s ease;
+}
+.pts-modal-title { color: var(--pts-ink); }
+
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes popIn {
+  from { opacity: 0; transform: scale(0.9); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+
+/* ===== Mobile / collapsed menu (below lg = 992px) ===== */
+@media (max-width: 991px) {
+
+  /* Turn OFF the full-width underline for both normal & dropdown links */
+  .pts-link::after,
+  .pts-link.dropdown-toggle::after {
+    display: none;
+  }
+
+  /* Give stacked links breathing room */
+  .navbar-nav {
+    padding-top: 0.5rem;
+    gap: 0.15rem;
+  }
+
+  /* Use a subtle left accent bar instead */
+  .pts-link {
+    border-left: 3px solid transparent;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+  }
+  .pts-link:hover,
+  .pts-link.active {
+    border-left-color: var(--pts-primary);
+    background: rgba(0, 163, 92, 0.1);
+    color: #ffffff !important;
+  }
+
+  /* Restore the caret arrow for dropdown on mobile (since underline is gone) */
+  .pts-link.dropdown-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  /* Separator line above the user block on mobile */
+  .pts-user-block {
+    border-top: 1px solid #2a3b45;
+    padding-top: 0.75rem;
+    margin-top: 0.5rem;
+  }
+}

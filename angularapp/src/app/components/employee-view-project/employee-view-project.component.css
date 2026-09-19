@@ -1,0 +1,61 @@
+
+
+.pts-thead,
+.table > thead.pts-thead {
+  background: #2f5d8b !important;
+  color: #fff;
+}
+
+.pts-thead th,
+.table > thead.pts-thead > tr > th {
+  background: #2f5d8b !important;
+  color: #fff !important;
+  font-weight: 500;
+  border-bottom: none;
+  padding: 12px 14px;
+  font-size: 0.9rem;
+}
+
+.table > tbody > tr > td {
+  padding: 12px 14px;
+  font-size: 0.9rem;
+  vertical-align: middle;
+}
+
+.table-hover > tbody > tr:hover > td {
+  background: #f0f7f3;
+}
+.pagination-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    margin-top: 20px;
+}
+
+.page-btn {
+    min-width: 40px;
+    padding: 8px 14px;
+    border: 1px solid var(--pts-border);
+    background: white;
+    color: var(--pts-ink);
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.page-btn:hover:not(:disabled) {
+    background: #2f5d8b;
+    color: white;
+}
+
+.page-btn.active {
+    background: #2f5d8b;
+    color: white;
+    border-color: #2f5d8b;
+}
+
+.page-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
